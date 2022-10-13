@@ -1,42 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { IProduct } from './product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { from } from 'rxjs';
 import { ProductService } from './product.service';
+import { Store } from '@ngrx/store';
+import { selectProductsList } from 'src/store/products.selector';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss']
+  styleUrls: ['./product-detail.component.scss'],
 })
-export class ProductDetailComponent implements OnInit {
-
+export class ProductDetailComponent implements OnInit, OnChanges {
   pageTitle = 'Product Detail';
   errorMessage = '';
-  product: IProduct | undefined;
+  product: IProduct;
+  productID: number;
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductService) { }
-
+    private productService: ProductService,
+    private store: Store
+  ) {}
 
   ngOnInit() {
     const param = this.route.snapshot.paramMap.get('id');
     if (param) {
-      const id = +param;
-      this.getProduct(id);
+      this.productID = +param;
     }
-  }
-
-  getProduct(id: number) {
-    this.productService.getProduct(id).subscribe({
-      next: product => this.product = product,
-      error: err => this.errorMessage = err
-    });
+    this.getAllProductsListListener();
   }
 
   onBack(): void {
     this.router.navigate(['/products']);
   }
 
+  getAllProductsListListener() {
+    this.store
+      .select(selectProductsList)
+      .pipe(filter((data) => !!data.length))
+      .subscribe((data) => {
+        this.product = data.filter(
+          (product) => product.productId === this.productID
+        )[0];
+      });
+  }
 }
