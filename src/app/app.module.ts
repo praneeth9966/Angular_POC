@@ -23,6 +23,8 @@ import { StoreModule } from '@ngrx/store';
 import { productsReducer } from 'src/store/products.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { Effects } from 'src/store/products.effects';
+import { LoginComponent } from './login/login/login.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { Effects } from 'src/store/products.effects';
     UTLoginComponent,
     TemplateDrivenFormComponent,
     ReactiveFormComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { Effects } from 'src/store/products.effects';
     LightboxModule,
     StoreModule.forRoot({ products: productsReducer }),
     EffectsModule.forRoot([Effects]),
+    StoreDevtoolsModule.instrument({ maxAge: 100 }),
     // SimplebarAngularModule
   ],
   providers: [],

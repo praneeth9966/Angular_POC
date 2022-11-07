@@ -1,0 +1,64 @@
+.login-container-wrapper {
+  justify-content: center;
+  align-items: center;
+  min-height: 92.91vh;
+  .login-container {
+    width: 30%;
+    min-height: 200px;
+    height: auto;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    padding: 48px 40px 36px;
+    .login-header-section {
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      .title {
+        font-size: 24px;
+        font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+        color: #007bff;
+      }
+      .signin {
+        font-size: 24px;
+        font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+        color: #202124;
+        padding-top: 16px;
+      }
+      .product {
+        font-size: 16px;
+        font-weight: 400;
+        font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+        color: #202124;
+        padding-top: 8px;
+        padding-bottom: 24px;
+      }
+    }
+    .login-form {
+      width: 100%;
+      .login-btn-section {
+        width: 100%;
+        .lbtn-left-section {
+          width: 50%;
+          justify-content: center;
+          align-items: flex-start;
+          a {
+            color: #1a73e8;
+            font-size: 14px;
+            font-family: "Google Sans", "Noto Sans Myanmar UI", arial,
+              sans-serif;
+          }
+        }
+        .lbtn-right-section {
+          width: 50%;
+          justify-content: center;
+          align-items: flex-end;
+        }
+      }
+      .user-error-msg {
+        color: red;
+        font-size: 14px;
+        font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+      }
+    }
+  }
+}

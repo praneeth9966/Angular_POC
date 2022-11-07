@@ -2,8 +2,19 @@
   <a class="navbar-brand">{{ pageTitle }}</a>
   <ul class="nav nav-pills">
     <li>
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/welcome']"
-        >Home</a
+      <a
+        class="nav-link"
+        routerLinkActive="active"
+        [routerLink]="['/login']"
+        *ngIf="!isUserValid"
+        >Login</a
+      >
+      <a
+        class="nav-link"
+        routerLinkActive="active"
+        (click)="redirectToLogin()"
+        *ngIf="isUserValid"
+        >Logout</a
       >
     </li>
     <li>

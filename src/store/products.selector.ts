@@ -10,3 +10,13 @@ export const selectProductsList = createSelector(
   selectProductsState,
   (state: AppState) => state.productList
 );
+
+export const selectSignInDetails = createSelector(
+  selectProductsState,
+  (state: AppState) => state.signinDetails
+);
+
+export const isValidUserDetails = createSelector(
+  selectProductsState,
+  (state: AppState) => state.isValidUser
+);

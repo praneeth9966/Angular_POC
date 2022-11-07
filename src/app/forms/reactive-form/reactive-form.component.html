@@ -1,42 +1,80 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="exampleInputUsername">Username</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="userName"
+      [class.is-invalid]="userName.invalid && userName.touched"
+    />
 
-    <div class="form-group">
-        <label for="exampleInputUsername">Username</label>
-        <input type="text" class="form-control" formControlName="userName"
-        [class.is-invalid]="userName.invalid && userName.touched">   
-        
-         <div *ngIf="userName.invalid && userName.touched">
-            <small class="text-danger" *ngIf="userName.errors?.required">Username is required</small>
-            <small class="text-danger" *ngIf="userName.errors?.minlength">Username must be 3 characters</small>
-         </div>                                       
+    <div *ngIf="userName.invalid && userName.touched">
+      <small class="text-danger" *ngIf="userName.errors?.required"
+        >Username is required</small
+      >
+      <small class="text-danger" *ngIf="userName.errors?.minlength"
+        >Username must be 3 characters</small
+      >
     </div>
+  </div>
 
-    <div class="form-group">
-        <label for="exampleInputPassword">Email</label>
-        <input type="password" class="form-control" formControlName="email"
-        [class.is-invalid]="registrationForm.get('email').invalid && registrationForm.get('email').touched">
-        <small class="text-danger" [class.d-none]="registrationForm.get('email').valid || registrationForm.get('email').untouched">Email is required</small>      
-    </div>
+  <div class="form-group">
+    <label for="exampleInputPassword">Email</label>
+    <input
+      type="password"
+      class="form-control"
+      formControlName="email"
+      [class.is-invalid]="
+        registrationForm.controls.email.invalid &&
+        registrationForm.controls.email.touched
+      "
+    />
+    <small
+      class="text-danger"
+      [class.d-none]="
+        registrationForm.controls.email.valid ||
+        registrationForm.controls.email.untouched
+      "
+      >Email is required</small
+    >
+  </div>
 
-    <div class="form-check mb-3">
-        <input class="form-check-input" type="checkbox" formControlName="subscribe">
-        <label class="form-check-label">Send me promotional offers</label>       
-    </div>
+  <div class="form-check mb-3">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      formControlName="subscribe"
+    />
+    <label class="form-check-label">Send me promotional offers</label>
+  </div>
 
-    <div class="form-group">
-        <label for="exampleInputEmail">Password</label>
-        <input type="email" class="form-control" formControlName="password">
-    </div>
+  <div class="form-group">
+    <label for="exampleInputEmail">Password</label>
+    <input type="email" class="form-control" formControlName="password" />
+  </div>
 
-    <div class="form-group">
-        <label for="exampleInputConfirmPassword">Confirm Password</label>
-        <input type="password" class="form-control" formControlName="confirmPassword"
-        [class.is-invalid]="registrationForm.errors?.misMatch">  
-        <small class="text-danger" *ngIf="registrationForm.errors?.misMatch">passwords do not match</small>                
-    </div>
+  <div class="form-group">
+    <label for="exampleInputConfirmPassword">Confirm Password</label>
+    <input
+      type="password"
+      class="form-control"
+      formControlName="confirmPassword"
+      [class.is-invalid]="registrationForm.errors?.misMatch"
+    />
+    <small class="text-danger" *ngIf="registrationForm.errors?.misMatch"
+      >passwords do not match</small
+    >
+  </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">Register</button>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="!registrationForm.valid"
+  >
+    Register
+  </button>
 
-    <button type="button" class="btn btn-secondary ml-2" (click)="loadApiData()">Load Api Data</button>
-
+  <button type="button" class="btn btn-secondary ml-2" (click)="loadApiData()">
+    Load Api Data
+  </button>
 </form>

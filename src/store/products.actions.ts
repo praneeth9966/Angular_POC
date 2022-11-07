@@ -8,3 +8,12 @@ export const getAllProductListSuccess = createAction(
   '[Product List] Get all products list success',
   props<{ products: IProduct[] }>()
 );
+
+export const signInDetails = createAction(
+  '[Sign In] Get all users sign in details'
+);
+
+export const isValidUser = createAction(
+  '[Log In Log Out] Login Logout the user',
+  props<{ userValid: boolean }>()
+);

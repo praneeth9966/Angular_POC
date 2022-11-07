@@ -9,6 +9,19 @@ export const adapter: EntityAdapter<any> = createEntityAdapter<any>();
 
 export const initialState: AppState = adapter.getInitialState({
   productList: [],
+  signinDetails: [
+    {
+      userName: 'admin',
+      userEmail: 'admin@gmail.com',
+      password: 'Admin@123',
+    },
+    {
+      userName: 'superadmin',
+      userEmail: 'superadmin@gmail.com',
+      password: 'Superadmin@123',
+    },
+  ],
+  isValidUser: false,
 });
 
 export const productsReducer = createReducer(
@@ -17,6 +30,18 @@ export const productsReducer = createReducer(
     return {
       ...state,
       productList: products,
+    };
+  }),
+  on(productsActions.signInDetails, (state) => {
+    return {
+      ...state,
+      signinDetails: state.signinDetails,
+    };
+  }),
+  on(productsActions.isValidUser, (state, { userValid }) => {
+    return {
+      ...state,
+      isValidUser: userValid,
     };
   })
 );
